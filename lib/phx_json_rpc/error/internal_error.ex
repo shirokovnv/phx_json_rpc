@@ -1,10 +1,6 @@
 defmodule PhxJsonRpc.Error.InternalError do
   @moduledoc """
-  An error meaning
-
-  ```
-  - Internal JSON-RPC error.
-  ```
+  Internal JSON-RPC error.
   """
   use PhxJsonRpc.Error,
     message: "Internal error",

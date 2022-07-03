@@ -1,10 +1,6 @@
 defmodule PhxJsonRpc.Error.InvalidRequest do
   @moduledoc """
-  An error meaning
-
-  ```
-  - The JSON sent is not a valid Request object.
-  ```
+  The JSON sent is not a valid Request object.
   """
 
   use PhxJsonRpc.Error,

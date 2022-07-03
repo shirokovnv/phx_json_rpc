@@ -1,10 +1,6 @@
 defmodule PhxJsonRpc.Error.ServerError do
   @moduledoc """
-  An error meaning
-
-  ```
-  - Reserved for implementation-defined server-errors.
-  ```
+  Reserved for implementation-defined server-errors.
   """
   use PhxJsonRpc.Error,
     message: "Server error",
