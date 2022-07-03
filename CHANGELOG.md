@@ -2,6 +2,16 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.2.0
+
+### Added
+
+- Maximum batch size limit property
+
+### Fixed
+
+- Typespecs in pipe section
+
 ## Version 0.1.1
 
 ### Added
