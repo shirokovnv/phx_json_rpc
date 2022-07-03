@@ -25,7 +25,7 @@ defmodule PhxJsonRpc.Router do
 
   ## OTP customization (optional)
 
-  You can override pipeline for handling requests, adding extra-params in `config` file.
+  You can override pipeline for handling requests, by adding extra-params in `config` file.
 
   All the options should implement specific behaviour.
 
