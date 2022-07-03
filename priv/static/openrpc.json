@@ -1,0 +1,96 @@
+{
+  "openrpc": "1.2.4",
+  "info": {
+    "version": "1.0.0",
+    "title": "Test OpenRPC",
+    "description": "A sample API designed by OpenRPC specification",
+    "termsOfService": "https://open-rpc.org",
+    "contact": {
+      "name": "OpenRPC Team",
+      "email": "doesntexist@open-rpc.org",
+      "url": "https://open-rpc.org"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+
+  },
+  "methods": [
+    {
+      "name": "hello",
+      "description": "Greets the user",
+      "params": [
+        {
+          "name": "name",
+          "description": "User name",
+          "schema": {
+            "$ref": "#/components/schemas/Name"
+          }
+        }
+      ],
+      "result": {
+        "name": "greet",
+        "description": "Greet response",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "without_schema_ref",
+      "description": "Test no schema ref specified",
+      "params": [
+      ],
+      "result": {
+        "name": "test no ref",
+        "description": "",
+        "schema": {
+          "type": "string"
+        }
+      }
+    },
+    {
+      "name": "internal_error",
+      "description": "Test internal error",
+      "params": [
+      ],
+      "result": {
+        "name": "internal error",
+        "description": "",
+        "schema": {
+          "type": "null"
+        }
+      }
+    },
+    {
+      "name": "server_error",
+      "description": "Test server error",
+      "params": [
+      ],
+      "result": {
+        "name": "server error",
+        "description": "",
+        "schema": {
+          "type": "null"
+        }
+      }
+    }
+  ],
+  "components": {
+    "schemas": {
+      "Name": {
+        "type": "object",
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
