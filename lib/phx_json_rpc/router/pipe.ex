@@ -14,7 +14,8 @@ defmodule PhxJsonRpc.Router.Pipe do
   - dispatch
   ```
   """
-  @callback handle(request :: list(map()) | map(), context :: module()) :: [Request] | Request
+  @callback handle(request :: list(map()) | map(), context :: module()) ::
+              [Request.t()] | Request.t()
 end
 
 defmodule PhxJsonRpc.Router.DefaultPipe do
@@ -51,10 +52,10 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
   defp get_metadata(request, context) when is_map(request) do
     method = Map.get(request, "method")
 
-    cond do
-      is_nil(method) -> nil
-      is_binary(method) -> Keyword.get(context.get_routes(), get_key(method))
-      true -> nil
+    if is_binary(method) do
+      Keyword.get(context.get_routes(), get_key(method))
+    else
+      nil
     end
   end
 
