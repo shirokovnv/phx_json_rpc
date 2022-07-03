@@ -2,6 +2,12 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.2.2
+
+### Added
+
+- `Request ID` to error log format
+
 ## Version 0.2.1
 
 ### Updated
