@@ -2,6 +2,12 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.3.0
+
+### Added
+
+- OTP configuration for the `router`
+
 ## Version 0.2.2
 
 ### Added

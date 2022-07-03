@@ -6,6 +6,7 @@ defmodule PhxJsonRpc.RouterTest do
   alias PhxJsonRpc.Router
 
   use PhxJsonRpc.Router,
+    otp_app: :test_rpc,
     schema: "priv/static/openrpc.json",
     version: "2.0",
     max_batch_size: 20

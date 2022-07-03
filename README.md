@@ -22,7 +22,7 @@ by adding `phx_json_rpc` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:phx_json_rpc, "~> 0.2.2"}
+    {:phx_json_rpc, "~> 0.3.0"}
   ]
 end
 ```
