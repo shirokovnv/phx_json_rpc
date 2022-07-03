@@ -19,7 +19,7 @@ def deps do
 end
 ```
 
-This package depends on [ex_json_schema](https://github.com/jonasschmidt/ex_json_schema){:target="_blank"} for validation purposes.
+This package depends on [ex_json_schema](https://github.com/jonasschmidt/ex_json_schema) for validation purposes.
 
 ## Quick start
 
@@ -33,9 +33,9 @@ The docs can be found at [https://hexdocs.pm/phx_json_rpc](https://hexdocs.pm/ph
 
 The package creation was inspired by some other repos:
 
-- [json-rpc-laravel](https://github.com/avto-dev/json-rpc-laravel){:target="_blank"}
-- [open-rpc](https://github.com/open-rpc/){:target="_blank"}
-- [phoenix1.4-json-rpc](https://github.com/vruizext/phoenix1.4-json-rpc){:target="_blank"}
+- [json-rpc-laravel](https://github.com/avto-dev/json-rpc-laravel)
+- [open-rpc](https://github.com/open-rpc/)
+- [phoenix1.4-json-rpc](https://github.com/vruizext/phoenix1.4-json-rpc)
 
 ## License
 

@@ -1,6 +1,6 @@
 defmodule PhxJsonRpc do
   @moduledoc """
-  A simple implementation of the [JSON-RPC](https://www.jsonrpc.org/specification){:target="_blank"}.
+  A simple implementation of the [JSON-RPC](https://www.jsonrpc.org/specification).
 
   JSON-RPC is a remote procedure call protocol encoded in JSON.
   It is similar to the XML-RPC protocol, defining only a few data types and commands.
