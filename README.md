@@ -1,6 +1,6 @@
 # PhxJsonRpc
 
-Simple implementation of JSON-RPC server, working with phoenix.
+Simple implementation of JSON-RPC server, working with [phoenix](https://www.phoenixframework.org/).
 
 Allows you to define any number of rpc endpoints, with simple access via http protocol.
 
