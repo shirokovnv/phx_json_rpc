@@ -59,25 +59,30 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
         ParseError,
         ServerError
       ] ->
-        log_exception(e, __STACKTRACE__)
+        log_exception(id, e, __STACKTRACE__)
         with_error(e, id, version)
 
       e in FunctionClauseError ->
-        log_exception(e, __STACKTRACE__)
+        log_exception(id, e, __STACKTRACE__)
         with_error(%InvalidParams{}, id, version)
 
       e in [ArgumentError, UndefinedFunctionError] ->
-        log_exception(e, __STACKTRACE__)
+        log_exception(id, e, __STACKTRACE__)
         with_error(%MethodNotFound{}, id, version)
 
       e ->
-        log_exception(e, __STACKTRACE__)
+        log_exception(id, e, __STACKTRACE__)
         with_error(%InternalError{}, id, version)
     end
   end
 
-  defp log_exception(exception, stacktrace) do
-    Logger.error(Exception.format(:error, exception, stacktrace))
+  defp log_exception(request_id, exception, stacktrace) do
+    Logger.error(
+      Enum.join([
+        "Request #{request_id} causes an exception: ",
+        Exception.format(:error, exception, stacktrace)
+      ])
+    )
   end
 
   defp with_result(result, id, version) do
