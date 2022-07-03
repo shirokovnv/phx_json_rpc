@@ -2,7 +2,7 @@ defmodule PhxJsonRpc.Router.Pipe do
   @moduledoc """
   Behaviour for handling requests via rpc.
   """
-  alias PhxJsonRpc.Request
+  alias PhxJsonRpc.Response
 
   @doc """
   Handles rpc requests via the given context(router).
@@ -15,7 +15,7 @@ defmodule PhxJsonRpc.Router.Pipe do
   ```
   """
   @callback handle(request :: list(map()) | map(), context :: module()) ::
-              [Request.t()] | Request.t()
+              [Response.t()] | Response.t()
 end
 
 defmodule PhxJsonRpc.Router.DefaultPipe do
