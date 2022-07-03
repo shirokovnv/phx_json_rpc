@@ -55,6 +55,6 @@ defmodule PhxJsonRpc.Response do
   """
   @spec empty(boolean()) :: t
   def empty(valid \\ false) do
-    %__MODULE__{valid?: valid}
+    parse_params(%__MODULE__{}, valid?: valid)
   end
 end
