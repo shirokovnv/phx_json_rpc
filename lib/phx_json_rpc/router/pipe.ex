@@ -30,6 +30,10 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
   alias PhxJsonRpc.Error.InternalError
   alias PhxJsonRpc.Response
 
+  @default_parser DefaultParser
+  @default_validator DefaultValidator
+  @default_dispatcher DefaultDispatcher
+
   @impl true
   def handle(%{"_json" => requests}, context) do
     handle(requests, context)
@@ -49,10 +53,15 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     meta = get_metadata(request, context)
     schema_ref = if is_nil(meta), do: nil, else: meta.schema_ref
 
+    config = Application.get_env(context.get_otp_app(), context, [])
+    parser = config[:parser] || @default_parser
+    validator = config[:validator] || @default_validator
+    dispatcher = config[:dispatcher] || @default_dispatcher
+
     request
-    |> DefaultParser.parse(context.get_version())
-    |> DefaultValidator.validate(schema_ref, context.get_json_schema())
-    |> DefaultDispatcher.dispatch(meta)
+    |> parser.parse(context.get_version())
+    |> validator.validate(schema_ref, context.get_json_schema())
+    |> dispatcher.dispatch(meta)
   end
 
   defp handle_batch(requests, context) do

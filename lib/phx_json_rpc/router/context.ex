@@ -29,4 +29,9 @@ defmodule PhxJsonRpc.Router.Context do
   Returns maximum size of the batch.
   """
   @callback get_max_batch_size() :: pos_integer()
+
+  @doc """
+  Returns the otp application name.
+  """
+  @callback get_otp_app() :: atom()
 end

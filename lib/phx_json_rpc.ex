@@ -13,7 +13,7 @@ defmodule PhxJsonRpc do
   Add `:phx_json_rpc` to your dependencies
 
   ```
-  {:phx_json_rpc, "~> 0.2.2"}
+  {:phx_json_rpc, "~> 0.3.0"}
   ```
 
   ## Usage with phoenix
@@ -29,6 +29,7 @@ defmodule PhxJsonRpc do
   ```
   defmodule MyApp.Rpc.Router do
     use PhxJsonRpc.Router,
+      otp_app: :rpc_router,
       schema: "[PATH_TO_YOUR_SCHEMA]",
       version: "2.0",
       max_batch_size: 20

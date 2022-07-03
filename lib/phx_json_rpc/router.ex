@@ -3,6 +3,7 @@ defmodule PhxJsonRpc.Router do
   The entrypoint for defining rpc routes.
 
   ## Config
+    * `otp_app` - name of the OTP application.
 
     * `schema` - specifies path to your json-schema file.
 
@@ -10,28 +11,55 @@ defmodule PhxJsonRpc.Router do
 
     * `max_batch_size` - maximum number of requests per batch.
 
-  ## Example
+  ### Example
 
       defmodule MyRpcRouter do
         use PhxJsonRpc.Router,
+          otp_app: :rpc_router,
           schema: "[PATH_TO_OPENRPC_SCHEMA]",
           version: "2.0",
           max_batch_size: 20
 
         rpc("greet", HelloController, :hello)
       end
+
+  ## OTP customization (optional)
+
+  You can override pipeline for handling requests, adding extra-params in `config` file.
+
+  All the options should implement specific behaviour.
+
+  If option is not present in the config, it will be setted to the package defaults.
+
+  * `parser` - should implement `PhxJsonRpc.Router.Parser`
+
+  * `validator` - should implement `PhxJsonRpc.Router.Validator`
+
+  * `dispatcher` - should implement `PhxJsonRpc.Router.Dispatcher`
+
+  ### Example
+
+  ```
+    config :rpc_router, MyRpcRouter,
+      parser: MyRpc.Parser,
+      validator: MyRpc.Validator,
+      dispatcher: MyRpc.Validator
+  ```
   """
 
   defmacro __using__(opts) do
     schema = Keyword.fetch!(opts, :schema)
     version = Keyword.fetch!(opts, :version)
     max_batch_size = Keyword.fetch!(opts, :max_batch_size)
+    otp_app = Keyword.fetch!(opts, :otp_app)
 
     if !is_binary(schema), do: raise(ArgumentError, message: "Schema name must be string.")
     if !is_binary(version), do: raise(ArgumentError, message: "Version must be string.")
 
     if !(is_integer(max_batch_size) && max_batch_size > 0),
       do: raise(ArgumentError, message: "Maximum batch size must be positive integer.")
+
+    if !is_atom(otp_app), do: raise(ArgumentError, message: "OTP App must me an atom.")
 
     quote do
       import unquote(__MODULE__)
@@ -44,6 +72,7 @@ defmodule PhxJsonRpc.Router do
       @json_schema SchemaResolver.resolve(unquote(schema))
       @version unquote(version)
       @max_batch_size unquote(max_batch_size)
+      @otp_app unquote(otp_app)
 
       @before_compile unquote(__MODULE__)
     end
@@ -135,6 +164,11 @@ defmodule PhxJsonRpc.Router do
       @impl true
       def get_max_batch_size() do
         @max_batch_size
+      end
+
+      @impl true
+      def get_otp_app() do
+        @otp_app
       end
 
       def handle(requests) do
