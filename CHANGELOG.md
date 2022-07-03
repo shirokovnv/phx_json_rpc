@@ -8,6 +8,10 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 - Improved documentation guide
 
+### Added
+
+- `howitworks` section to `README.md`
+
 ## Version 0.2.0
 
 ### Added

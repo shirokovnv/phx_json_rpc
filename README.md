@@ -2,9 +2,17 @@
 
 Simple implementation of JSON-RPC server, working with [phoenix](https://www.phoenixframework.org/).
 
-Allows you to define any number of rpc endpoints, with simple access via http protocol.
+Allows you to define any number of rpc endpoints, which can be accessed via http protocol.
 
-Endpoint can handle batches in asyncronous order.
+## How it works
+
+The package uses router `macro` for matching RPC calls to your end-user service.
+
+It uses `JSON SCHEMA` as a specification for your services and provides parsing, validation and error handling briefly.
+
+Requests can be served in batches with asyncronous order.
+
+See documentation section for more detail.
 
 ## Installation
 
