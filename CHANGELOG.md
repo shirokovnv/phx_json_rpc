@@ -2,6 +2,12 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.2.1
+
+### Updated
+
+- Improved documentation guide
+
 ## Version 0.2.0
 
 ### Added

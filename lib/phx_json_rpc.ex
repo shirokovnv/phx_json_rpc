@@ -13,12 +13,18 @@ defmodule PhxJsonRpc do
   Add `:phx_json_rpc` to your dependencies
 
   ```
-  {:phx_json_rpc, "~> 0.2.0"}
+  {:phx_json_rpc, "~> 0.2.1"}
   ```
 
   ## Usage with phoenix
 
-  1. Configure rpc router, specifying json schema version and batch size params
+  1. Prepare your service specification, written as JSON SCHEMA
+
+      The bunch of examples can be found [here](https://github.com/open-rpc/examples).
+
+      Usually it should be stored as a dependency or just a file in your repo (for ex `myapp/priv/static/openrpc.json`).
+
+  2. Configure rpc router, specifying json schema version and batch size params
 
   ```
   defmodule MyApp.Rpc.Router do
@@ -26,6 +32,8 @@ defmodule PhxJsonRpc do
       schema: "[PATH_TO_YOUR_SCHEMA]",
       version: "2.0",
       max_batch_size: 20
+
+    alias MyAppRpc.PetController
 
     ## Pet's service
     rpc("pet.create", PetController, :create, "#/components/schemas/Pet")
@@ -35,7 +43,34 @@ defmodule PhxJsonRpc do
   end
   ```
 
-  2. Create controller for handling requests via http
+  3. Specify service module
+
+  ```
+  defmodule MyAppRpc.PetController do
+    @moduledoc "My Pet Service"
+
+    def create(%{"name" => name}) do
+      "Created"
+    end
+
+    def list(_params) do
+      [
+        "Cat",
+        "Dog"
+      ]
+    end
+
+    def update(params) do
+      "Update your pet here"
+    end
+
+    def delete(%{"id" => id}) do
+      "Pet removed from the store"
+    end
+  end
+  ```
+
+  4. Create controller for handling requests via http
 
   ```
   defmodule MyAppWeb.RpcController do
@@ -50,7 +85,7 @@ defmodule PhxJsonRpc do
   end
   ```
 
-  3. Import helpers inside your view and define render function
+  5. Import helpers inside your view and define render function
 
   ```
   defmodule MyAppWeb.RpcView do
@@ -76,7 +111,7 @@ defmodule PhxJsonRpc do
     end
   ```
 
-  4. Add endpoint path to your router under the `api` scope
+  6. Add endpoint path to your phoenix router under the `api` scope
 
   ```
   scope "/api", MyAppWeb do
@@ -86,7 +121,7 @@ defmodule PhxJsonRpc do
   end
   ```
 
-  5. Start phoenix server and make an http request
+  7. Start phoenix server and make an http request
 
   ```
   curl -X POST \
