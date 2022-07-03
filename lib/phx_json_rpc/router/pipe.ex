@@ -13,6 +13,9 @@ defmodule PhxJsonRpc.Router.Pipe do
   - validate
   - dispatch
   ```
+
+  If batch size exceeded, an exception will be rendered and
+  requests for the current batch wont be processed.
   """
   @callback handle(request :: list(map()) | map(), context :: module()) ::
               [Response.t()] | Response.t()
@@ -24,6 +27,8 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
   @behaviour PhxJsonRpc.Router.Pipe
 
   alias PhxJsonRpc.Router.{DefaultParser, DefaultValidator, DefaultDispatcher}
+  alias PhxJsonRpc.Error.InternalError
+  alias PhxJsonRpc.Response
 
   @impl true
   def handle(%{"_json" => requests}, context) do
@@ -32,10 +37,11 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
 
   @impl true
   def handle(requests, context) when is_list(requests) do
-    requests
-    |> Task.async_stream(fn request -> handle(request, context) end, ordered: false)
-    |> Enum.map(fn {:ok, response} -> response end)
-    |> Enum.to_list()
+    if Enum.count(requests) <= context.get_max_batch_size() do
+      handle_batch(requests, context)
+    else
+      show_limit_error()
+    end
   end
 
   @impl true
@@ -47,6 +53,18 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     |> DefaultParser.parse(context.get_version())
     |> DefaultValidator.validate(schema_ref, context.get_json_schema())
     |> DefaultDispatcher.dispatch(meta)
+  end
+
+  defp handle_batch(requests, context) do
+    requests
+    |> Task.async_stream(fn request -> handle(request, context) end, ordered: false)
+    |> Enum.map(fn {:ok, response} -> response end)
+    |> Enum.to_list()
+  end
+
+  defp show_limit_error() do
+    error = %InternalError{message: "Batch size limit exceeded."}
+    %Response{error: error, valid?: false}
   end
 
   defp get_metadata(request, context) when is_map(request) do

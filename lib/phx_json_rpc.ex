@@ -18,13 +18,14 @@ defmodule PhxJsonRpc do
 
   ## Usage with phoenix
 
-  1. Configure rpc router, specifying json schema and version params
+  1. Configure rpc router, specifying json schema version and batch size params
 
   ```
   defmodule MyApp.Rpc.Router do
     use PhxJsonRpc.Router,
       schema: "[PATH_TO_YOUR_SCHEMA]",
-      version: "2.0"
+      version: "2.0",
+      max_batch_size: 20
 
     ## Pet's service
     rpc("pet.create", PetController, :create, "#/components/schemas/Pet")

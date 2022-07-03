@@ -7,7 +7,8 @@ defmodule PhxJsonRpc.RouterTest do
 
   use PhxJsonRpc.Router,
     schema: "priv/static/openrpc.json",
-    version: "2.0"
+    version: "2.0",
+    max_batch_size: 20
 
   alias PhxJsonRpc.Response
 
@@ -141,5 +142,19 @@ defmodule PhxJsonRpc.RouterTest do
     Enum.each(list_of_responses, fn response ->
       assert response in expected_responses
     end)
+  end
+
+  test "batch limit exceeded" do
+    request = %{
+      "jsonrpc" => "2.0",
+      "method" => "hello",
+      "params" => %{"name" => "Ron"},
+      "id" => "ID"
+    }
+
+    requests = 1..100 |> Enum.map(fn index -> request end)
+    expected_error = %InternalError{message: "Batch size limit exceeded."}
+
+    assert handle(requests) === %Response{error: expected_error, valid?: false}
   end
 end

@@ -2,12 +2,21 @@ defmodule PhxJsonRpc.Router do
   @moduledoc """
   The entrypoint for defining rpc routes.
 
+  ## Config
+
+    * `schema` - specifies path to your json-schema file.
+
+    * `version` - jsonrpc version.
+
+    * `max_batch_size` - maximum number of requests per batch.
+
   ## Example
 
       defmodule MyRpcRouter do
         use PhxJsonRpc.Router,
           schema: "[PATH_TO_OPENRPC_SCHEMA]",
-          version: "2.0"
+          version: "2.0",
+          max_batch_size: 20
 
         rpc("greet", HelloController, :hello)
       end
@@ -16,9 +25,13 @@ defmodule PhxJsonRpc.Router do
   defmacro __using__(opts) do
     schema = Keyword.fetch!(opts, :schema)
     version = Keyword.fetch!(opts, :version)
+    max_batch_size = Keyword.fetch!(opts, :max_batch_size)
 
     if !is_binary(schema), do: raise(ArgumentError, message: "Schema name must be string.")
     if !is_binary(version), do: raise(ArgumentError, message: "Version must be string.")
+
+    if !(is_integer(max_batch_size) && max_batch_size > 0),
+      do: raise(ArgumentError, message: "Maximum batch size must be positive integer.")
 
     quote do
       import unquote(__MODULE__)
@@ -30,6 +43,7 @@ defmodule PhxJsonRpc.Router do
 
       @json_schema SchemaResolver.resolve(unquote(schema))
       @version unquote(version)
+      @max_batch_size unquote(max_batch_size)
 
       @before_compile unquote(__MODULE__)
     end
@@ -116,6 +130,11 @@ defmodule PhxJsonRpc.Router do
       @impl true
       def get_version() do
         @version
+      end
+
+      @impl true
+      def get_max_batch_size() do
+        @max_batch_size
       end
 
       def handle(requests) do

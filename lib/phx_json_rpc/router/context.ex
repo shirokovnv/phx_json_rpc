@@ -24,4 +24,9 @@ defmodule PhxJsonRpc.Router.Context do
   Returns the pre-resolved json-schema.
   """
   @callback get_json_schema() :: map()
+
+  @doc """
+  Returns maximum size of the batch.
+  """
+  @callback get_max_batch_size() :: pos_integer()
 end
