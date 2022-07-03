@@ -2,7 +2,7 @@ defmodule PhxJsonRpc.Router.Dispatcher do
   @moduledoc """
   Behaviour for the rpc requests dispatcher.
   """
-  alias PhxJsonRpc.Request
+  alias PhxJsonRpc.{Request, Response}
   alias PhxJsonRpc.Router.MetaData
 
   @doc """
@@ -10,8 +10,7 @@ defmodule PhxJsonRpc.Router.Dispatcher do
 
   If no metadata specified, falls to `method not found` response.
   """
-  @callback dispatch(request :: Request.t(), meta :: nil | MetaData.t()) ::
-              PhxJsonRpc.Response.t()
+  @callback dispatch(request :: Request.t(), meta :: nil | MetaData.t()) :: Response.t()
 end
 
 defmodule PhxJsonRpc.Router.DefaultDispatcher do
