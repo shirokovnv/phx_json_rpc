@@ -55,9 +55,9 @@ defmodule PhxJsonRpcWeb.Views.Helpers do
     %{
       "jsonrpc" => response.version,
       "error" => %{
-        "data" => error.data,
-        "code" => error.code,
-        "message" => error.message
+        "data" => Map.get(error || %{}, :data),
+        "code" => Map.get(error || %{}, :code),
+        "message" => Map.get(error || %{}, :message)
       },
       "id" => response.id
     }
