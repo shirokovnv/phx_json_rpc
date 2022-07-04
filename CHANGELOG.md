@@ -8,6 +8,8 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 - Documentation typo in `router` section
 
+- Bug with `undefined` error in view helpers
+
 ## Version 0.3.0
 
 ### Added
