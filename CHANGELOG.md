@@ -2,6 +2,14 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.3.1
+
+### Fixed
+
+- Documentation typo in `router` section
+
+- Refactored call the `log_exception` function
+
 ## Version 0.3.0
 
 ### Added
