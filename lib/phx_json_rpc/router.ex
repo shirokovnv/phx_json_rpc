@@ -43,7 +43,7 @@ defmodule PhxJsonRpc.Router do
     config :rpc_router, MyRpcRouter,
       parser: MyRpc.Parser,
       validator: MyRpc.Validator,
-      dispatcher: MyRpc.Validator
+      dispatcher: MyRpc.Dispatcher
   ```
   """
 
