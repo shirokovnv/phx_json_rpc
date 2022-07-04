@@ -59,24 +59,20 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
         ParseError,
         ServerError
       ] ->
-        log_exception(id, e, __STACKTRACE__)
-        with_error(e, id, version)
+        with_error(e, id, version, e, __STACKTRACE__)
 
       e in FunctionClauseError ->
-        log_exception(id, e, __STACKTRACE__)
-        with_error(%InvalidParams{}, id, version)
+        with_error(%InvalidParams{}, id, version, e, __STACKTRACE__)
 
       e in [ArgumentError, UndefinedFunctionError] ->
-        log_exception(id, e, __STACKTRACE__)
-        with_error(%MethodNotFound{}, id, version)
+        with_error(%MethodNotFound{}, id, version, e, __STACKTRACE__)
 
       e ->
-        log_exception(id, e, __STACKTRACE__)
-        with_error(%InternalError{}, id, version)
+        with_error(%InternalError{}, id, version, e, __STACKTRACE__)
     end
   end
 
-  defp log_exception(request_id, exception, stacktrace) do
+  defp log_error(request_id, exception, stacktrace) do
     Logger.error(
       Enum.join([
         "Request #{request_id} causes an exception: ",
@@ -89,7 +85,11 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
     Response.new(data: result, id: id, valid?: true, version: version)
   end
 
-  defp with_error(error, id, version) do
+  defp with_error(error, id, version, should_be_logged_error \\ nil, stacktrace \\ nil) do
+    if should_be_logged_error do
+      log_error(id, should_be_logged_error, stacktrace)
+    end
+
     Response.new(id: id, valid?: false, error: error, version: version)
   end
 end
