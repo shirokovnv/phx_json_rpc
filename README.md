@@ -1,5 +1,7 @@
 # PhxJsonRpc
 
+![ci.yml](https://github.com/shirokovnv/phx_json_rpc/actions/workflows/ci.yml/badge.svg)
+
 Simple implementation of JSON-RPC server, written in [elixir](https://elixir-lang.org/) and working with [phoenix](https://www.phoenixframework.org/).
 
 Allows you to define any number of rpc endpoints, which can be accessed via http protocol.
