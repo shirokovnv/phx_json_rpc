@@ -36,11 +36,11 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 ### Added
 
-- Maximum batch size limit property
+- Maximum batch size limit property for `router`
 
 ### Fixed
 
-- Typespecs in pipe section
+- Typespecs in `pipe` section
 
 ## Version 0.1.1
 
