@@ -44,4 +44,25 @@ defmodule PhxJsonRpc.Router.ValidatorTest do
                error: expected_error
              }
   end
+
+  test "schema reference doesn't exist", state do
+    params = %{}
+    request = %Request{method: "hello", id: "ID", params: params, valid?: true}
+
+    schema_ref = "#/non-existing-reference"
+    schema = state[:schema]
+
+    expected_error = %InvalidParams{
+      data: ["Schema reference #/non-existing-reference does not exist."]
+    }
+
+    assert DefaultValidator.validate(request, schema_ref, schema) ===
+             %Request{
+               method: "hello",
+               params: params,
+               id: "ID",
+               valid?: false,
+               error: expected_error
+             }
+  end
 end
