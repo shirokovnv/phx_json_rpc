@@ -41,3 +41,6 @@ jobs:
       
     - name: Run tests
       run: mix test
+      
+    - name: Run test coverage
+      run: mix coveralls
