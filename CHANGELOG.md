@@ -2,6 +2,16 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
+## Version 0.3.2
+
+### Added
+
+- `excoveralls` to CI
+
+### Fixed
+
+- Test warnings, some doc typos
+
 ## Version 0.3.1
 
 ### Fixed
