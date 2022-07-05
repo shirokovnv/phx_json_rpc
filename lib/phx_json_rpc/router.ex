@@ -100,7 +100,7 @@ defmodule PhxJsonRpc.Router do
 
     * `action` - resolving function in controller.
 
-    * `schema_ref` - reference inside json schema, used for request params validation.
+    * `schema_ref` - reference inside json schema, used for request params validation (optional).
 
   ## Examples
       rpc("hello", HelloController, :hello)
