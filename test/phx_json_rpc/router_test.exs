@@ -3,7 +3,6 @@ defmodule PhxJsonRpc.RouterTest do
 
   use ExUnit.Case
   doctest PhxJsonRpc.Router
-  alias PhxJsonRpc.Router
 
   use PhxJsonRpc.Router,
     otp_app: :test_rpc,
@@ -153,7 +152,7 @@ defmodule PhxJsonRpc.RouterTest do
       "id" => "ID"
     }
 
-    requests = 1..100 |> Enum.map(fn index -> request end)
+    requests = 1..100 |> Enum.map(fn _index -> request end)
     expected_error = %InternalError{message: "Batch size limit exceeded."}
 
     assert handle(requests) === %Response{error: expected_error, valid?: false}

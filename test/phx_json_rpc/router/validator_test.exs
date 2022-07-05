@@ -2,7 +2,7 @@ defmodule PhxJsonRpc.Router.ValidatorTest do
   use ExUnit.Case
   alias PhxJsonRpc.Error.InvalidParams
   alias PhxJsonRpc.Router.{DefaultValidator, SchemaResolver}
-  alias PhxJsonRpc.{Request, Response}
+  alias PhxJsonRpc.Request
 
   setup_all do
     schema_ref = "#/components/schemas/Name"
@@ -28,7 +28,7 @@ defmodule PhxJsonRpc.Router.ValidatorTest do
     schema_ref = state[:schema_ref]
     schema = state[:schema]
 
-    expected_error = %PhxJsonRpc.Error.InvalidParams{
+    expected_error = %InvalidParams{
       data: [
         {"Type mismatch. Expected String but got Integer.", "#/name"},
         {"Schema does not allow additional properties.", "#/age"}
