@@ -6,7 +6,7 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 ### Added
 
-- `excoveralls` to CI
+- `excoveralls` for test coverage
 
 ### Fixed
 
