@@ -69,7 +69,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Unneccessary condition, when accessing metadata in `PhxJsonRpc.Router.Pipe`
-
 - Documentation in `PhxJsonRpc.Error` section
 
 ## [0.1.0] - 2022-07-03
