@@ -2,7 +2,16 @@
 
 All notable changes to `PhxJsonRpc` will be documented in this file.
 
-## Version 0.3.2
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.3.3] - 2022-07-07
+
+### Changed
+
+- Follow [Keep a Changelog](https://keepachangelog.com/en/1.0.0/) standart
+
+## [0.3.2] - 2022-07-06
 
 ### Added
 
@@ -12,27 +21,26 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 - Test warnings, some doc typos
 
-## Version 0.3.1
+## [0.3.1] - 2022-07-05
 
 ### Fixed
 
-- Documentation typo in `router` section
+- Documentation typo in `PhxJsonRpc.Router`
+- Bug with `undefined` error in `PhxJsonRpc.Views.Helpers`
 
-- Bug with `undefined` error in view helpers
-
-## Version 0.3.0
-
-### Added
-
-- OTP configuration for the `router`
-
-## Version 0.2.2
+## [0.3.0] - 2022-07-04
 
 ### Added
 
-- `Request ID` to error log format
+- OTP configuration for the `PhxJsonRpc.Router`
 
-## Version 0.2.1
+## [0.2.2] - 2022-07-03
+
+### Added
+
+- `Request ID` to error log format in `PhxJsonRpc.Router.DefaultDispatcher`
+
+## [0.2.1] - 2022-07-03
 
 ### Updated
 
@@ -42,17 +50,17 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 - `howitworks` section to `README.md`
 
-## Version 0.2.0
+## [0.2.0] - 2022-07-03
 
 ### Added
 
-- Maximum batch size limit property for `router`
+- Maximum batch size limit property for `PhxJsonRpc.Router`
 
 ### Fixed
 
-- Typespecs in `pipe` section
+- Typespecs in `PhxJsonRpc.Router.Pipe` section
 
-## Version 0.1.1
+## [0.1.1] - 2022-07-03
 
 ### Added
 
@@ -60,11 +68,11 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 
 ### Fixed
 
-- Unneccessary condition, when accessing metadata in pipe
+- Unneccessary condition, when accessing metadata in `PhxJsonRpc.Router.Pipe`
 
-- Documentation in error section
+- Documentation in `PhxJsonRpc.Error` section
 
-## Version 0.1.0
+## [0.1.0] - 2022-07-03
 
 ### Added
 
