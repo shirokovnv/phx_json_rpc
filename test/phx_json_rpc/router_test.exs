@@ -116,7 +116,7 @@ defmodule PhxJsonRpc.RouterTest do
     assert handle(request) == %Response{version: "2.0", id: "ID", error: error, valid?: false}
   end
 
-  test "list of requests" do
+  test "non-empty list of requests" do
     requests = [
       %{
         "jsonrpc" => "2.0",
@@ -142,6 +142,11 @@ defmodule PhxJsonRpc.RouterTest do
     Enum.each(list_of_responses, fn response ->
       assert response in expected_responses
     end)
+  end
+
+  test "empty list of requests" do
+    requests = responses = []
+    assert handle(requests) === responses
   end
 
   test "batch limit exceeded" do
