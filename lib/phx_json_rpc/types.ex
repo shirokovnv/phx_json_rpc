@@ -27,7 +27,7 @@ defmodule PhxJsonRpc.Types do
   @typedoc """
   Type represents called rpc request method in the form of string.
   """
-  @type rpc_request_method :: String.t()
+  @type rpc_request_method :: binary()
 
   @typedoc """
   Type represents possible rpc errors.

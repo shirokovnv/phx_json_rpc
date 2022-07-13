@@ -15,11 +15,11 @@ defmodule PhxJsonRpc.Error do
       Type that represents error struct with :code and :message required.
       """
       @type t :: %__MODULE__{
-              message: String.t(),
+              message: binary(),
               code: integer()
             }
 
-      @spec message(t) :: String.t()
+      @spec message(t) :: binary()
       def message(exception) do
         inspect(exception)
       end
