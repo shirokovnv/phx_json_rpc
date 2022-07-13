@@ -47,7 +47,7 @@ defmodule PhxJsonRpc.Types do
   @type rpc_response :: any()
 
   @doc """
-  Parses parameters, applying defaults by the given struct.
+  Parses parameters, applying them to the given struct, falling back to defaults for the rest.
   """
   @spec parse_params(struct, Keyword.t()) :: any
   def parse_params(struct, params \\ []) do
