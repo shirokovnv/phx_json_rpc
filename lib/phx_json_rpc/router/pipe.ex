@@ -26,9 +26,9 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
 
   @behaviour PhxJsonRpc.Router.Pipe
 
-  alias PhxJsonRpc.Router.{DefaultParser, DefaultValidator, DefaultDispatcher}
   alias PhxJsonRpc.Error.InternalError
   alias PhxJsonRpc.Response
+  alias PhxJsonRpc.Router.{DefaultDispatcher, DefaultParser, DefaultValidator}
 
   @default_parser DefaultParser
   @default_validator DefaultValidator
@@ -71,7 +71,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     |> Enum.to_list()
   end
 
-  defp show_limit_error() do
+  defp show_limit_error do
     error = %InternalError{message: "Batch size limit exceeded."}
     %Response{error: error, valid?: false}
   end
@@ -89,10 +89,8 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
   defp get_metadata(_request, _context), do: nil
 
   defp get_key(method) do
-    try do
-      String.to_existing_atom(method)
-    rescue
-      ArgumentError -> nil
-    end
+    String.to_existing_atom(method)
+  rescue
+    ArgumentError -> nil
   end
 end
