@@ -32,7 +32,7 @@ defmodule PhxJsonRpc.MixProject do
   def project do
     [
       app: :phx_json_rpc,
-      version: "0.3.3",
+      version: "0.3.4",
       elixir: "~> 1.10",
       aliases: aliases(),
       start_permanent: Mix.env() == :prod,
