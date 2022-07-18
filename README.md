@@ -14,7 +14,7 @@ It uses `JSON SCHEMA` as a specification for your services and provides parsing,
 
 Requests can be served in batches with asyncronous order.
 
-To start handling requests:
+To start handling requests with phoenix:
 
 1. Define rpc router
 
