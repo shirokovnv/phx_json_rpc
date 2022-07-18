@@ -34,6 +34,7 @@ defmodule PhxJsonRpc.MixProject do
       app: :phx_json_rpc,
       version: "0.3.3",
       elixir: "~> 1.10",
+      aliases: aliases(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
@@ -70,6 +71,16 @@ defmodule PhxJsonRpc.MixProject do
         "Github" => @url
       }
     ]
+  end
+
+  defp aliases do
+    [docs: ["docs", &copy_images/1]]
+  end
+
+  defp copy_images(_) do
+    File.cp_r("assets", "doc/assets", fn _source, _destination ->
+      true
+    end)
   end
 
   defp docs do
