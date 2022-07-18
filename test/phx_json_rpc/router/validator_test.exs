@@ -6,7 +6,7 @@ defmodule PhxJsonRpc.Router.ValidatorTest do
 
   setup_all do
     schema_ref = "#/components/schemas/Name"
-    schema = SchemaResolver.resolve("priv/static/openrpc.json")
+    schema = SchemaResolver.resolve("test/priv/static/openrpc.json")
     [schema_ref: schema_ref, schema: schema]
   end
 
