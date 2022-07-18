@@ -1,8 +1,8 @@
 defmodule PhxJsonRpc.Router.ParserTest do
   use ExUnit.Case
-  alias PhxJsonRpc.Router.DefaultParser
-  alias PhxJsonRpc.Request
   alias PhxJsonRpc.Error.ParseError
+  alias PhxJsonRpc.Request
+  alias PhxJsonRpc.Router.DefaultParser
 
   test "parses valid request" do
     request = %{

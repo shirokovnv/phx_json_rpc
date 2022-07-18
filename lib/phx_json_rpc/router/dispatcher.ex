@@ -20,9 +20,6 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
 
   require Logger
 
-  alias PhxJsonRpc.Router.MetaData
-  alias PhxJsonRpc.Response
-
   alias PhxJsonRpc.Error.{
     InternalError,
     InvalidParams,
@@ -31,6 +28,9 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
     ParseError,
     ServerError
   }
+
+  alias PhxJsonRpc.Response
+  alias PhxJsonRpc.Router.MetaData
 
   @impl true
   def dispatch(%PhxJsonRpc.Request{valid?: true} = request, meta) when is_nil(meta) do
@@ -44,32 +44,30 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
 
   @impl true
   def dispatch(%PhxJsonRpc.Request{params: params, id: id, version: version}, %MetaData{} = meta) do
-    try do
-      with_result(
-        apply(meta.controller, meta.action, [params]),
-        id,
-        version
-      )
-    rescue
-      e in [
-        InternalError,
-        InvalidParams,
-        InvalidRequest,
-        MethodNotFound,
-        ParseError,
-        ServerError
-      ] ->
-        with_error(e, id, version, e, __STACKTRACE__)
+    with_result(
+      apply(meta.controller, meta.action, [params]),
+      id,
+      version
+    )
+  rescue
+    e in [
+      InternalError,
+      InvalidParams,
+      InvalidRequest,
+      MethodNotFound,
+      ParseError,
+      ServerError
+    ] ->
+      with_error(e, id, version, e, __STACKTRACE__)
 
-      e in FunctionClauseError ->
-        with_error(%InvalidParams{}, id, version, e, __STACKTRACE__)
+    e in FunctionClauseError ->
+      with_error(%InvalidParams{}, id, version, e, __STACKTRACE__)
 
-      e in [ArgumentError, UndefinedFunctionError] ->
-        with_error(%MethodNotFound{}, id, version, e, __STACKTRACE__)
+    e in [ArgumentError, UndefinedFunctionError] ->
+      with_error(%MethodNotFound{}, id, version, e, __STACKTRACE__)
 
-      e ->
-        with_error(%InternalError{}, id, version, e, __STACKTRACE__)
-    end
+    e ->
+      with_error(%InternalError{}, id, version, e, __STACKTRACE__)
   end
 
   defp log_error(request_id, exception, stacktrace) do

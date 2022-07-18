@@ -147,27 +147,27 @@ defmodule PhxJsonRpc.Router do
       @behaviour Context
 
       @impl true
-      def get_routes() do
+      def get_routes do
         @routes
       end
 
       @impl true
-      def get_json_schema() do
+      def get_json_schema do
         @json_schema
       end
 
       @impl true
-      def get_version() do
+      def get_version do
         @version
       end
 
       @impl true
-      def get_max_batch_size() do
+      def get_max_batch_size do
         @max_batch_size
       end
 
       @impl true
-      def get_otp_app() do
+      def get_otp_app do
         @otp_app
       end
 

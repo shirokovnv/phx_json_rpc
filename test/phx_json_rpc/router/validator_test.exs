@@ -1,8 +1,8 @@
 defmodule PhxJsonRpc.Router.ValidatorTest do
   use ExUnit.Case
   alias PhxJsonRpc.Error.InvalidParams
-  alias PhxJsonRpc.Router.{DefaultValidator, SchemaResolver}
   alias PhxJsonRpc.Request
+  alias PhxJsonRpc.Router.{DefaultValidator, SchemaResolver}
 
   setup_all do
     schema_ref = "#/components/schemas/Name"
