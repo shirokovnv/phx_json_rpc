@@ -78,9 +78,9 @@ See [quick start](#quick-start) and [documentation](#documentation) section for 
 
 Request and response using postman:
 
-![request](assets/images/request.png "request")
+![request](test/priv/static/assets/request.png "request")
 
-![response](assets/images/response.png "response")
+![response](test/priv/static/assets/response.png "response")
 
 ## Installation
 
