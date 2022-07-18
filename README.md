@@ -76,7 +76,7 @@ end
 
 See [quick start](#quick-start) and [documentation](#documentation) section for more detail.
 
-Some screenshots using postman:
+Request and response using postman:
 
 ![request](assets/images/request.png "request")
 

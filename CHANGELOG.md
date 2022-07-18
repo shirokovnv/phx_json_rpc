@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Specified phoenix version in docs
 - Matrix tests in `CI`
 - [Dependabot](https://github.com/dependabot) support by [@sobolevn]
+- Releases started for github repo
 
 ## [0.3.3] - 2022-07-07
 
