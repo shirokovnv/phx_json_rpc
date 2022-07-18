@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Example to `howitworks` section in `README.md`
 - Specified phoenix version in docs
 - Matrix tests in `CI`
-- [Dependabot](https://github.com/dependabot) support by [@sobolevn]
+- [Dependabot](https://github.com/dependabot) support by [@sobolevn](https://github.com/sobolevn)
 - Releases started for github repo
 
 ## [0.3.3] - 2022-07-07
@@ -86,5 +86,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Initial commit
-
-[@sobolevn]:https://github.com/sobolevn
