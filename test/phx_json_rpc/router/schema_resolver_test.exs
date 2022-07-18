@@ -3,7 +3,7 @@ defmodule PhxJsonRpc.Router.SchemaResolverTest do
   alias PhxJsonRpc.Router.SchemaResolver
 
   test "resolves existing file" do
-    schema = SchemaResolver.resolve("priv/static/openrpc.json")
+    schema = SchemaResolver.resolve("test/priv/static/openrpc.json")
     assert schema.__struct__ === ExJsonSchema.Schema.Root
   end
 
