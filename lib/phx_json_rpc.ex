@@ -18,6 +18,8 @@ defmodule PhxJsonRpc do
 
   ## Usage with phoenix
 
+  **Tested with `version >= 1.6`**
+
   1. Prepare your service specification, written as JSON SCHEMA
 
       The bunch of examples can be found [here](https://github.com/open-rpc/examples).
