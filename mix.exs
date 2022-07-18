@@ -78,7 +78,9 @@ defmodule PhxJsonRpc.MixProject do
   end
 
   defp copy_images(_) do
-    File.cp_r("assets", "doc/assets", fn _source, _destination ->
+    File.mkdir("doc/test")
+
+    File.cp_r("test/priv", "doc/test/priv", fn _source, _destination ->
       true
     end)
   end
