@@ -57,7 +57,7 @@ defmodule MyAppWeb.RpcView do
   import PhxJsonRpc.Views.Helpers
 
   def render("response.json", %{response: response}) do
-      render_json(response)
+    render_json(response)
   end
 end
 ```
