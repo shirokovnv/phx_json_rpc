@@ -6,7 +6,7 @@ defmodule PhxJsonRpc.Router.SchemaResolver do
   @doc """
   Resolves json schema by path.
   """
-  @spec resolve(path :: binary()) :: ExJsonSchema.Root.t() | no_return
+  @spec resolve(path :: binary()) :: ExJsonSchema.Schema.Root.t() | no_return
   def resolve(path) do
     Enum.join([File.cwd!(), path], "/")
     |> File.read!()

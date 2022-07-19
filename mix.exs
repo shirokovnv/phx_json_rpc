@@ -50,7 +50,13 @@ defmodule PhxJsonRpc.MixProject do
       source_url: @url,
       homepage_url: @url,
       docs: docs(),
-      package: package()
+      package: package(),
+
+      # Dialyzer
+      dialyzer: [
+        plt_file: {:no_warn, "priv/plts/dialyzer.plt"},
+        plt_add_apps: [:ex_json_schema, :jason]
+      ]
     ]
   end
 
@@ -126,6 +132,7 @@ defmodule PhxJsonRpc.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_json_schema, "~> 0.9.1"}
     ]
   end
