@@ -52,3 +52,18 @@ jobs:
 
       - name: Run tests
         run: mix test
+
+      - name: Restore PLT cache
+        uses: actions/cache@v3
+        id: plt_cache
+        with:
+          path: _build/test
+          key: plts-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock') }}
+
+      # Create PLTs if no cache was found
+      - name: Create PLTs
+        if: steps.plt_cache.outputs.cache-hit != 'true'
+        run: mix dialyzer --plt
+
+      - name: Run dialyzer
+        run: mix dialyzer --no-check
