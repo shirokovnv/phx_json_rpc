@@ -57,12 +57,8 @@ jobs:
         uses: actions/cache@v3
         id: plt_cache
         with:
-          key: |
-            ${{ runner.os }}-${{ matrix.elixir }}-${{ matrix.otp }}-plt
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.elixir }}-${{ matrix.otp }}-plt
-          path: |
-            priv/plts
+          path: priv/plts
+          key: plts-${{ matrix.otp }}-${{ matrix.elixir }}-${{ hashFiles('**/mix.lock') }}
 
       # Create PLTs if no cache was found
       - name: Create PLTs
