@@ -10,6 +10,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Dialyzer support in `CI`
+- Screenshots in `usage with phoenix` guide
+
+### Changed
+
+- Documentation structure in `README.md`
 
 ## [0.3.5] - 2022-07-18
 

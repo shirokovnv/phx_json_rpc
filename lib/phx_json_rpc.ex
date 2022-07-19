@@ -18,8 +18,6 @@ defmodule PhxJsonRpc do
 
   ## Usage with phoenix
 
-  **Tested with `version >= 1.6`**
-
   1. Prepare your service specification, written as JSON SCHEMA
 
       The bunch of examples can be found [here](https://github.com/open-rpc/examples).
@@ -132,6 +130,12 @@ defmodule PhxJsonRpc do
      -d '{"jsonrpc":"2.0","id":"[ID]","method":"pet.create","params":{"name":"Kitty"}}' \
      http://localhost:4000/api/rpc
   ```
+
+  Request and response using postman:
+
+  ![request](test/priv/static/assets/request.png "request")
+
+  ![response](test/priv/static/assets/response.png "response")
 
   """
 end

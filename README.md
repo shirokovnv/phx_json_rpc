@@ -14,73 +14,7 @@ It uses `JSON SCHEMA` as a specification for your services and provides parsing,
 
 Requests can be served in batches with asyncronous order.
 
-To start handling requests with phoenix:
-
-1. Define rpc router
-
-```elixir
-defmodule MyApp.Rpc.Router do
-  use PhxJsonRpc.Router,
-    otp_app: :rpc_router,
-    schema: "[PATH_TO_YOUR_SCHEMA]",
-    version: "2.0",
-    max_batch_size: 20
-
-  alias MyApp.Service
-
-  ## Service routes
-  rpc("hello", Service, :hello, "#/components/schemas/Greeting")
-end
-```
-
-2. Use handler in any web controller
-
-```elixir
-defmodule MyAppWeb.RpcController do
-  use MyAppWeb, :controller
-
-  alias MyApp.Rpc.Router
-
-  def rpc(conn, request) do
-    response = Router.handle(request)
-    render(conn, "response.json", response)
-  end
-end
-```
-
-3. Import helpers inside your view
-
-```elixir
-defmodule MyAppWeb.RpcView do
-  use MyAppWeb, :view
-
-  import PhxJsonRpc.Views.Helpers
-
-  def render("response.json", %{response: response}) do
-    render_json(response)
-  end
-end
-```
-
-4. Ensure your service module is defined and it's methods described in json-schema
-
-```elixir
-defmodule MyApp.Service do
-  @moduledoc "My service"
-
-  def hello(%{"name" => name}) do
-    "Hello, #{name}"
-  end
-end
-```
-
-See [quick start](#quick-start) and [documentation](#documentation) section for more detail.
-
-Request and response using postman:
-
-![request](test/priv/static/assets/request.png "request")
-
-![response](test/priv/static/assets/response.png "response")
+For usage with phoenix see this [guide](https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html).
 
 ## Installation
 
@@ -97,9 +31,9 @@ end
 
 This package depends on [ex_json_schema](https://github.com/jonasschmidt/ex_json_schema) for validation purposes.
 
-## Quick start
+## Supported phoenix versions
 
-Please see this [guide](https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html) for usage with phoenix.
+The package tested with `phoenix >= 1.6`, but probably will work with any version started from `1.4`.
 
 ## Documentation
 
