@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Dialyzer support in `CI`
 
+### Changed
+
+- Documentation structure in `README.md`
+
 ## [0.3.5] - 2022-07-18
 
 ### Changed
