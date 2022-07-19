@@ -130,9 +130,9 @@ defmodule PhxJsonRpc.MixProject do
   defp deps do
     [
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
-      {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_json_schema, "~> 0.9.1"}
     ]
   end
