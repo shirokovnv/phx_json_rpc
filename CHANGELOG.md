@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Example controller moved to the `test` namespace
+- Bump dialyxir from `1.1.0` to `1.2.0`
 
 ## [0.3.6] - 2022-07-19
 
