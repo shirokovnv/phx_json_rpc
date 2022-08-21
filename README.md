@@ -1,6 +1,7 @@
 # PhxJsonRpc
 
 ![ci.yml][link-ci]
+![hex.pm badge][hex-link]
 
 Simple implementation of JSON-RPC server, written in [elixir][elixir-link] and working with [phoenix][phoenix-link].
 
@@ -56,3 +57,4 @@ MIT. Please see the [license file](LICENSE.md) for more information.
 [phoenix-link]: https://www.phoenixframework.org/
 [guide-link]: https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html
 [docs-link]: https://hexdocs.pm/phx_json_rpc
+[hex-link]: https://img.shields.io/hexpm/v/phx_json_rpc
