@@ -1,8 +1,8 @@
 # PhxJsonRpc
 
-![ci.yml](https://github.com/shirokovnv/phx_json_rpc/actions/workflows/ci.yml/badge.svg)
+![ci.yml][link-ci]
 
-Simple implementation of JSON-RPC server, written in [elixir](https://elixir-lang.org/) and working with [phoenix](https://www.phoenixframework.org/).
+Simple implementation of JSON-RPC server, written in [elixir][elixir-link] and working with [phoenix][phoenix-link].
 
 Allows you to define any number of rpc endpoints, which can be accessed via http protocol.
 
@@ -14,7 +14,7 @@ It uses `JSON SCHEMA` as a specification for your services and provides parsing,
 
 Requests can be served in batches with asyncronous order.
 
-For usage with phoenix see this [guide](https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html).
+For usage with phoenix see this [guide][guide-link].
 
 ## Installation
 
@@ -37,7 +37,7 @@ The package tested with `phoenix >= 1.6`, but probably will work with any versio
 
 ## Documentation
 
-The docs can be found at [https://hexdocs.pm/phx_json_rpc](https://hexdocs.pm/phx_json_rpc).
+The docs can be found at [https://hexdocs.pm/phx_json_rpc][docs-link].
 
 ## Links
 
@@ -50,3 +50,9 @@ The package creation was inspired by some other repos:
 ## License
 
 MIT. Please see the [license file](LICENSE.md) for more information.
+
+[link-ci]: https://github.com/shirokovnv/phx_json_rpc/actions/workflows/ci.yml/badge.svg
+[elixir-link]: https://elixir-lang.org/
+[phoenix-link]: https://www.phoenixframework.org/
+[guide-link]: https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html
+[docs-link]: https://hexdocs.pm/phx_json_rpc
