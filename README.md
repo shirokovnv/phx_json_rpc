@@ -1,9 +1,9 @@
 # PhxJsonRpc
 
 ![ci.yml][link-ci]
-![hex.pm badge][hex-link]
+[![hex.pm badge][link-shield]][link-hex]
 
-Simple implementation of JSON-RPC server, written in [elixir][elixir-link] and working with [phoenix][phoenix-link].
+Simple implementation of JSON-RPC server, written in [elixir][link-elixir] and working with [phoenix][link-phoenix].
 
 Allows you to define any number of rpc endpoints, which can be accessed via http protocol.
 
@@ -15,7 +15,7 @@ It uses `JSON SCHEMA` as a specification for your services and provides parsing,
 
 Requests can be served in batches with asyncronous order.
 
-For usage with phoenix see this [guide][guide-link].
+For usage with phoenix see this [guide][link-guide].
 
 ## Installation
 
@@ -38,7 +38,7 @@ The package tested with `phoenix >= 1.6`, but probably will work with any versio
 
 ## Documentation
 
-The docs can be found at [https://hexdocs.pm/phx_json_rpc][docs-link].
+The docs can be found at [https://hexdocs.pm/phx_json_rpc][link-docs].
 
 ## Links
 
@@ -53,8 +53,9 @@ The package creation was inspired by some other repos:
 MIT. Please see the [license file](LICENSE.md) for more information.
 
 [link-ci]: https://github.com/shirokovnv/phx_json_rpc/actions/workflows/ci.yml/badge.svg
-[elixir-link]: https://elixir-lang.org/
-[phoenix-link]: https://www.phoenixframework.org/
-[guide-link]: https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html
-[docs-link]: https://hexdocs.pm/phx_json_rpc
-[hex-link]: https://img.shields.io/hexpm/v/phx_json_rpc
+[link-elixir]: https://elixir-lang.org/
+[link-phoenix]: https://www.phoenixframework.org/
+[link-guide]: https://hexdocs.pm/phx_json_rpc/PhxJsonRpc.html
+[link-docs]: https://hexdocs.pm/phx_json_rpc
+[link-shield]: https://img.shields.io/hexpm/v/phx_json_rpc
+[link-hex]: https://hex.pm/packages/phx_json_rpc
