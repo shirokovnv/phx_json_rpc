@@ -19,6 +19,9 @@ jobs:
       matrix:
         elixir: ["1.10", "1.11", "1.12"]
         otp: ["23", "24"]
+        exclude:
+          - elixir: "1.10"
+            otp: "24"
     continue-on-error: false
 
     steps:
