@@ -2,8 +2,7 @@ defmodule PhxJsonRpc.Router.MiddlewareTest do
   use ExUnit.Case
 
   alias PhxJsonRpc.Error.InternalError
-  alias PhxJsonRpc.{Request, Response}
-  alias PhxJsonRpc.Router.Middleware
+  alias PhxJsonRpc.Response
   alias PhxJsonRpcWeb.{TestController, TestMiddleware}
 
   use PhxJsonRpc.Router,
