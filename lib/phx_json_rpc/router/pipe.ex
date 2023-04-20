@@ -28,7 +28,13 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
 
   alias PhxJsonRpc.Error.InternalError
   alias PhxJsonRpc.Response
-  alias PhxJsonRpc.Router.{DefaultDispatcher, DefaultParser, DefaultValidator}
+
+  alias PhxJsonRpc.Router.{
+    DefaultDispatcher,
+    DefaultMiddleware,
+    DefaultParser,
+    DefaultValidator
+  }
 
   @default_parser DefaultParser
   @default_validator DefaultValidator
@@ -53,7 +59,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     meta = get_metadata(request, context)
     schema_ref = if is_nil(meta), do: nil, else: meta.schema_ref
 
-    config = Application.get_env(context.instance.get_otp_app(), context, [])
+    config = Application.get_env(context.instance.get_otp_app(), context.instance, [])
     parser = config[:parser] || @default_parser
     validator = config[:validator] || @default_validator
     dispatcher = config[:dispatcher] || @default_dispatcher
@@ -61,6 +67,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     request
     |> parser.parse(context.instance.get_version())
     |> validator.validate(schema_ref, context.instance.get_json_schema())
+    |> DefaultMiddleware.handle(context)
     |> dispatcher.dispatch(meta)
   end
 
