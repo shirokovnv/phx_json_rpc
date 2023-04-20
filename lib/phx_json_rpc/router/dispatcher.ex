@@ -18,8 +18,6 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
 
   @behaviour PhxJsonRpc.Router.Dispatcher
 
-  require Logger
-
   alias PhxJsonRpc.Error.{
     InternalError,
     InvalidParams,
@@ -29,6 +27,7 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
     ServerError
   }
 
+  alias PhxJsonRpc.Logger
   alias PhxJsonRpc.Response
   alias PhxJsonRpc.Router.MetaData
 
@@ -70,22 +69,13 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
       with_error(%InternalError{}, id, version, e, __STACKTRACE__)
   end
 
-  defp log_error(request_id, exception, stacktrace) do
-    Logger.error(
-      Enum.join([
-        "Request #{request_id} causes an exception: ",
-        Exception.format(:error, exception, stacktrace)
-      ])
-    )
-  end
-
   defp with_result(result, id, version) do
     Response.new(data: result, id: id, valid?: true, version: version)
   end
 
   defp with_error(error, id, version, should_be_logged_error \\ nil, stacktrace \\ nil) do
     if should_be_logged_error do
-      log_error(id, should_be_logged_error, stacktrace)
+      Logger.log_error(id, should_be_logged_error, stacktrace)
     end
 
     Response.new(id: id, valid?: false, error: error, version: version)

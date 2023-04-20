@@ -16,6 +16,7 @@ defmodule PhxJsonRpc.Router.DefaultMiddleware do
   @moduledoc false
 
   alias PhxJsonRpc.Error.InternalError
+  alias PhxJsonRpc.Logger
 
   def handle(request, context) do
     middleware_group = context.instance.get_middleware()
@@ -34,6 +35,8 @@ defmodule PhxJsonRpc.Router.DefaultMiddleware do
     end)
   rescue
     e ->
+      Logger.log_error(request.id, e, __STACKTRACE__)
+
       request
       |> Map.put(:valid?, false)
       |> Map.put(:error, %InternalError{message: Exception.format(:error, e)})
