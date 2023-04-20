@@ -57,11 +57,11 @@ defmodule PhxJsonRpc.Router.DefaultMiddleware do
 
   def handle_middleware_group(middleware_group, request, context)
       when is_list(middleware_group) do
-    Enum.reduce(middleware_group, %{}, fn middleware, acc ->
-      if request.valid? do
-        middleware.handle(request, context)
+    Enum.reduce(middleware_group, request, fn middleware, req ->
+      if req.valid? do
+        middleware.handle(req, context)
       else
-        request
+        req
       end
     end)
   rescue
