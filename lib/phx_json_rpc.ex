@@ -13,7 +13,7 @@ defmodule PhxJsonRpc do
   Add `:phx_json_rpc` to your dependencies
 
   ```
-  {:phx_json_rpc, "~> 0.3.8"}
+  {:phx_json_rpc, "~> 0.4.0"}
   ```
 
   ## Usage with phoenix
