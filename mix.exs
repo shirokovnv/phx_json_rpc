@@ -6,6 +6,7 @@ defmodule PhxJsonRpc.MixProject do
 
   alias PhxJsonRpc.Router.{
     Context,
+    Middleware,
     Parser,
     Validator,
     Dispatcher,
@@ -107,6 +108,7 @@ defmodule PhxJsonRpc.MixProject do
           Context,
           Parser,
           Validator,
+          Middleware,
           Dispatcher,
           SchemaResolver,
           Pipe

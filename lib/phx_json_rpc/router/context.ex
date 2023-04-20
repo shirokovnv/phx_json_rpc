@@ -52,10 +52,10 @@ defmodule PhxJsonRpc.Router.Context do
 
   ## Examples
 
-      iex> PhxJsonRpc.Router.Context.build(Context, %{"hello" => "world"})
+      iex> PhxJsonRpc.Router.Context.build(Context, %{"is_rpc" => true})
       %PhxJsonRpc.Router.Context{
         instance: Context,
-        meta_data: %{"hello" => "world"}
+        meta_data: %{"is_rpc" => true}
       }
   """
   @spec build(module(), map() | nil) :: t
