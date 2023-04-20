@@ -73,7 +73,7 @@ defmodule PhxJsonRpc.Router.DefaultMiddleware do
       |> Map.put(:error, %InternalError{message: Exception.format(:error, e)})
   end
 
-  def handle_middleware_group(_, request, context) do
+  def handle_middleware_group(_, request, _context) do
     request
   end
 end
