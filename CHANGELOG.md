@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Added
 
-- Middleware interface and macro (handles request before dispatching to the rpc controller)
+- Middleware interface and macro (handles requests before dispatching to the rpc controller)
 
 ### Changed
 
