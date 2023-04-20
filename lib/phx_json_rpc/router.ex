@@ -171,8 +171,9 @@ defmodule PhxJsonRpc.Router do
         @otp_app
       end
 
-      def handle(requests) do
-        DefaultPipe.handle(requests, __MODULE__)
+      def handle(requests, meta_data \\ nil) do
+        ctx_instance = Context.build(__MODULE__, meta_data)
+        DefaultPipe.handle(requests, ctx_instance)
       end
     end
   end

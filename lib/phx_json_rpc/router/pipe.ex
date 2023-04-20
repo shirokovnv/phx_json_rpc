@@ -41,7 +41,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
 
   @impl true
   def handle(requests, context) when is_list(requests) do
-    if Enum.count(requests) <= context.get_max_batch_size() do
+    if Enum.count(requests) <= context.instance.get_max_batch_size() do
       handle_batch(requests, context)
     else
       show_limit_error()
@@ -53,14 +53,14 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     meta = get_metadata(request, context)
     schema_ref = if is_nil(meta), do: nil, else: meta.schema_ref
 
-    config = Application.get_env(context.get_otp_app(), context, [])
+    config = Application.get_env(context.instance.get_otp_app(), context, [])
     parser = config[:parser] || @default_parser
     validator = config[:validator] || @default_validator
     dispatcher = config[:dispatcher] || @default_dispatcher
 
     request
-    |> parser.parse(context.get_version())
-    |> validator.validate(schema_ref, context.get_json_schema())
+    |> parser.parse(context.instance.get_version())
+    |> validator.validate(schema_ref, context.instance.get_json_schema())
     |> dispatcher.dispatch(meta)
   end
 
@@ -80,7 +80,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     method = Map.get(request, "method")
 
     if is_binary(method) do
-      Keyword.get(context.get_routes(), get_key(method))
+      Keyword.get(context.instance.get_routes(), get_key(method))
     else
       nil
     end
