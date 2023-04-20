@@ -6,6 +6,7 @@ defmodule PhxJsonRpc.MixProject do
 
   alias PhxJsonRpc.Router.{
     Context,
+    Middleware,
     Parser,
     Validator,
     Dispatcher,
@@ -32,7 +33,7 @@ defmodule PhxJsonRpc.MixProject do
   def project do
     [
       app: :phx_json_rpc,
-      version: "0.3.8",
+      version: "0.4.0",
       elixir: "~> 1.10",
       elixirc_paths: elixirc_paths(Mix.env()),
       aliases: aliases(),
@@ -107,6 +108,7 @@ defmodule PhxJsonRpc.MixProject do
           Context,
           Parser,
           Validator,
+          Middleware,
           Dispatcher,
           SchemaResolver,
           Pipe
@@ -128,7 +130,9 @@ defmodule PhxJsonRpc.MixProject do
   end
 
   # Specifies which paths to compile per environment.
-  defp elixirc_paths(:test), do: ["lib", "test/phx_json_rpc_web/controllers"]
+  defp elixirc_paths(:test),
+    do: ["lib", "test/phx_json_rpc_web/controllers", "test/phx_json_rpc_web/middleware"]
+
   defp elixirc_paths(_), do: ["lib"]
 
   # Run "mix help deps" to learn about dependencies.

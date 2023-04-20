@@ -68,6 +68,7 @@ defmodule PhxJsonRpc.Router do
 
       Module.register_attribute(__MODULE__, :json_schema, accumulate: false)
       Module.register_attribute(__MODULE__, :routes, accumulate: true)
+      Module.register_attribute(__MODULE__, :middleware, accumulate: false)
 
       @json_schema SchemaResolver.resolve(unquote(schema))
       @version unquote(version)
@@ -129,6 +130,22 @@ defmodule PhxJsonRpc.Router do
     end
   end
 
+  @doc """
+  Keeps user-defined middleware.
+
+  ## Arguments
+    * `middleware_group` - enumeration of the list of middleware modules.
+
+  ## Examples
+      middleware(MyMiddlewareOne, MyMiddlewareTwo)
+  """
+  defmacro middleware(middleware_group) do
+    quote do
+      @middleware unquote(middleware_group)
+    end
+  end
+
+  # credo:disable-for-next-line
   defmacro __before_compile__(_env) do
     quote do
       if Enum.empty?(@routes), do: raise(ArgumentError, message: "No routes specified.")
@@ -171,8 +188,14 @@ defmodule PhxJsonRpc.Router do
         @otp_app
       end
 
-      def handle(requests) do
-        DefaultPipe.handle(requests, __MODULE__)
+      @impl true
+      def get_middleware do
+        @middleware
+      end
+
+      def handle(requests, meta_data \\ nil) do
+        ctx_instance = Context.build(__MODULE__, meta_data)
+        DefaultPipe.handle(requests, ctx_instance)
       end
     end
   end

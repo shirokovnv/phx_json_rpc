@@ -13,7 +13,7 @@ defmodule PhxJsonRpc do
   Add `:phx_json_rpc` to your dependencies
 
   ```
-  {:phx_json_rpc, "~> 0.3.8"}
+  {:phx_json_rpc, "~> 0.4.0"}
   ```
 
   ## Usage with phoenix
@@ -35,6 +35,10 @@ defmodule PhxJsonRpc do
       max_batch_size: 20
 
     alias MyAppRpc.PetController
+
+    ## Middleware group (optional)
+    # Uncomment the line below, when neccessary (see `PhxJsonRpc.Router.Middleware` for usage)
+    # middleware([AuthMiddleware])
 
     ## Pet's service
     rpc("pet.create", PetController, :create, "#/components/schemas/Pet")
@@ -80,7 +84,9 @@ defmodule PhxJsonRpc do
     alias MyApp.Rpc.Router
 
     def rpc(conn, request) do
-      response = Router.handle(request)
+      # Handles rpc requests
+      # The second parameter is optional and used to share current context
+      response = Router.handle(request, conn)
       render(conn, "response.json", response)
     end
   end
