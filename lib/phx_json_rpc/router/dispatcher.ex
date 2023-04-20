@@ -3,14 +3,15 @@ defmodule PhxJsonRpc.Router.Dispatcher do
   Behaviour for the rpc requests dispatcher.
   """
   alias PhxJsonRpc.{Request, Response}
-  alias PhxJsonRpc.Router.MetaData
+  alias PhxJsonRpc.Router.{Context, MetaData}
 
   @doc """
   Dispatches the given rpc request, using module and action definitions in metadata.
 
   If no metadata specified, falls to `method not found` response.
   """
-  @callback dispatch(request :: Request.t(), meta :: nil | MetaData.t()) :: Response.t()
+  @callback dispatch(request :: Request.t(), meta :: nil | MetaData.t(), context :: Context.t()) ::
+              Response.t()
 end
 
 defmodule PhxJsonRpc.Router.DefaultDispatcher do
@@ -29,22 +30,26 @@ defmodule PhxJsonRpc.Router.DefaultDispatcher do
 
   alias PhxJsonRpc.Logger
   alias PhxJsonRpc.Response
-  alias PhxJsonRpc.Router.MetaData
+  alias PhxJsonRpc.Router.{Context, MetaData}
 
   @impl true
-  def dispatch(%PhxJsonRpc.Request{valid?: true} = request, meta) when is_nil(meta) do
+  def dispatch(%PhxJsonRpc.Request{valid?: true} = request, meta, _context) when is_nil(meta) do
     with_error(%MethodNotFound{}, request.id, request.version)
   end
 
   @impl true
-  def dispatch(%PhxJsonRpc.Request{valid?: false} = request, _meta) do
+  def dispatch(%PhxJsonRpc.Request{valid?: false} = request, _meta, _context) do
     with_error(request.error, request.id, request.version)
   end
 
   @impl true
-  def dispatch(%PhxJsonRpc.Request{params: params, id: id, version: version}, %MetaData{} = meta) do
+  def dispatch(
+        %PhxJsonRpc.Request{params: params, id: id, version: version},
+        %MetaData{} = meta,
+        %Context{} = context
+      ) do
     with_result(
-      apply(meta.controller, meta.action, [params]),
+      apply(meta.controller, meta.action, [params, context]),
       id,
       version
     )

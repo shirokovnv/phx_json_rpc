@@ -2,15 +2,17 @@ defmodule PhxJsonRpc.Router.DispatcherTest do
   use ExUnit.Case
   alias PhxJsonRpc.Error.{InvalidParams, MethodNotFound}
   alias PhxJsonRpc.Router.DefaultDispatcher
-  alias PhxJsonRpc.Router.MetaData
+  alias PhxJsonRpc.Router.{Context, MetaData}
   alias PhxJsonRpc.{Request, Response}
   alias PhxJsonRpcWeb.TestController
+
+  @context Context.build(nil, nil)
 
   test "dispatches valid request" do
     request = %Request{method: "hello", id: "ID", params: %{"name" => "Ron"}, valid?: true}
     meta = %MetaData{controller: TestController, action: :hello}
 
-    assert DefaultDispatcher.dispatch(request, meta) ===
+    assert DefaultDispatcher.dispatch(request, meta, @context) ===
              %Response{data: "Hello, Ron", id: "ID", valid?: true}
   end
 
@@ -26,7 +28,7 @@ defmodule PhxJsonRpc.Router.DispatcherTest do
 
     expected_error = %InvalidParams{}
 
-    assert DefaultDispatcher.dispatch(request, meta) ===
+    assert DefaultDispatcher.dispatch(request, meta, @context) ===
              %Response{error: expected_error, id: "ID", valid?: false}
   end
 
@@ -36,7 +38,7 @@ defmodule PhxJsonRpc.Router.DispatcherTest do
 
     expected_error = %MethodNotFound{}
 
-    assert DefaultDispatcher.dispatch(request, meta) ===
+    assert DefaultDispatcher.dispatch(request, meta, @context) ===
              %Response{error: expected_error, id: "ID", valid?: false}
   end
 end
