@@ -22,6 +22,11 @@ defmodule PhxJsonRpc.Router.Context do
   """
   @type route_list :: list({atom(), MetaData.t()})
 
+  @typedoc """
+  Type represents the list of user-defined middleware.
+  """
+  @type middleware_list :: list(module())
+
   @doc """
   Returns the pre-defined list of routes.
   """
@@ -46,6 +51,11 @@ defmodule PhxJsonRpc.Router.Context do
   Returns the otp application name.
   """
   @callback get_otp_app() :: atom()
+
+  @doc """
+  Returns the middleware group.
+  """
+  @callback get_middleware() :: middleware_list()
 
   @doc """
   Builds new context.
