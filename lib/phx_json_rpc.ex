@@ -80,7 +80,9 @@ defmodule PhxJsonRpc do
     alias MyApp.Rpc.Router
 
     def rpc(conn, request) do
-      response = Router.handle(request)
+      # Handles rpc requests
+      # The second parameter is optional and used to share current context
+      response = Router.handle(request, conn)
       render(conn, "response.json", response)
     end
   end
