@@ -134,7 +134,7 @@ defmodule PhxJsonRpc.Router do
   Keeps user-defined middleware.
 
   ## Arguments
-    * `middleware_group` - enumeration of the list of the middleware modules.
+    * `middleware_group` - enumeration of the list of middleware modules.
 
   ## Examples
       middleware(MyMiddlewareOne, MyMiddlewareTwo)
