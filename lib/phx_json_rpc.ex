@@ -36,6 +36,10 @@ defmodule PhxJsonRpc do
 
     alias MyAppRpc.PetController
 
+    ## Middleware group (optional)
+    # Uncomment the line below, when neccessary (see `PhxJsonRpc.Router.Middleware` for usage)
+    # middleware([AuthMiddleware])
+
     ## Pet's service
     rpc("pet.create", PetController, :create, "#/components/schemas/Pet")
     rpc("pet.list", PetController, :list, "#/components/schemas/Pets")

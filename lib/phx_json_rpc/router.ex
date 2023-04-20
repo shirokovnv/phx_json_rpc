@@ -188,6 +188,7 @@ defmodule PhxJsonRpc.Router do
         @otp_app
       end
 
+      @impl true
       def get_middleware do
         @middleware
       end

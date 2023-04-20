@@ -1,7 +1,38 @@
 defmodule PhxJsonRpc.Router.Middleware do
   @moduledoc """
   Middleware interface for the group of routes.
+
+  Request must have `:valid => true` for passing through the next middleware.
+
+  ### Example
+
+      defmodule AuthMiddleware do
+        use PhxJsonRpc.Router.Middleware
+
+        @impl true
+        def handle(request, context) do
+          if context.meta_data.is_authenticated
+            request
+          else
+            request
+            |> Map.put(:valid?, false)
+            |> Map.put(:error, %AuthError{})
+          end
+        end
+      end
+
+      defmodule AuthError do
+        use PhxJsonRpc.Error,
+          message: "Unauthenticated",
+          code: -32_000
+      end
   """
+
+  defmacro __using__(_opts) do
+    quote do
+      @behaviour PhxJsonRpc.Router.Middleware
+    end
+  end
 
   alias PhxJsonRpc.Request
   alias PhxJsonRpc.Router.Context
