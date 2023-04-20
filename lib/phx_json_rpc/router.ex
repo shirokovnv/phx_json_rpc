@@ -145,6 +145,7 @@ defmodule PhxJsonRpc.Router do
     end
   end
 
+  # credo:disable-for-next-line
   defmacro __before_compile__(_env) do
     quote do
       if Enum.empty?(@routes), do: raise(ArgumentError, message: "No routes specified.")
