@@ -1,7 +1,5 @@
 defmodule PhxJsonRpc.Logger do
-  @moduledoc """
-  Module represents error logging functions.
-  """
+  @moduledoc false
 
   require Logger
 
