@@ -68,7 +68,7 @@ defmodule PhxJsonRpc.Router.DefaultPipe do
     |> parser.parse(context.instance.get_version())
     |> validator.validate(schema_ref, context.instance.get_json_schema())
     |> DefaultMiddleware.handle(context)
-    |> dispatcher.dispatch(meta)
+    |> dispatcher.dispatch(meta, context)
   end
 
   defp handle_batch(requests, context) do

@@ -3,19 +3,19 @@ defmodule PhxJsonRpcWeb.TestController do
 
   alias PhxJsonRpc.Error.ServerError
 
-  def hello(%{"name" => name}) do
+  def hello(%{"name" => name}, _context) do
     "Hello, #{name}"
   end
 
-  def internal_error(_params) do
+  def internal_error(_params, _context) do
     raise "oops"
   end
 
-  def server_error(_params) do
+  def server_error(_params, _context) do
     raise ServerError
   end
 
-  def without_schema_ref(_params) do
+  def without_schema_ref(_params, _context) do
     "no validation provided"
   end
 end

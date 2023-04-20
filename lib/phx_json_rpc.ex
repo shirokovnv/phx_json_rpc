@@ -13,7 +13,7 @@ defmodule PhxJsonRpc do
   Add `:phx_json_rpc` to your dependencies
 
   ```
-  {:phx_json_rpc, "~> 0.4.0"}
+  {:phx_json_rpc, "~> 0.5.0"}
   ```
 
   ## Usage with phoenix
@@ -54,22 +54,22 @@ defmodule PhxJsonRpc do
   defmodule MyAppRpc.PetController do
     @moduledoc "My Pet Service"
 
-    def create(%{"name" => name}) do
+    def create(%{"name" => name}, context) do
       "Created"
     end
 
-    def list(_params) do
+    def list(_params, context) do
       [
         "Cat",
         "Dog"
       ]
     end
 
-    def update(params) do
+    def update(params, context) do
       "Update your pet here"
     end
 
-    def delete(%{"id" => id}) do
+    def delete(%{"id" => id}, context) do
       "Pet removed from the store"
     end
   end
