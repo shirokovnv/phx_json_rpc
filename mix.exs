@@ -142,7 +142,7 @@ defmodule PhxJsonRpc.MixProject do
       {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.27", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
-      {:ex_json_schema, "~> 0.9.1"}
+      {:ex_json_schema, "~> 0.10.1"}
     ]
   end
 end
