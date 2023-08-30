@@ -5,11 +5,15 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.6.0] - 2023-08-30
 
 ### Changed
 
-- Minimum elixir version is set to `1.12`
+- BREAKING CHANGE: Minimum elixir version is set to `1.12`
+- Bump ex_json_schema from 0.9.2 to 0.10.1
+- Bump dialyxir from 1.3.0 to 1.4.0
+- Bump ex_doc from 0.30.3 to 0.30.6
+- Bump excoveralls from 0.16.1 to 0.17.1
 
 ## [0.5.0] - 2023-04-21
 
