@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Bump ex_json_schema to 0.10.2
 - Bump ex_coveralls to 0.18.3
 - Bump credo to 1.7.8
-- Bump ex_doc to 0.34.2
+- Bump ex_doc to 0.30.5
 
 ## [0.6.0] - 2023-08-30
 
