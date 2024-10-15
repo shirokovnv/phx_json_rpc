@@ -17,11 +17,8 @@ jobs:
       MIX_ENV: test
     strategy:
       matrix:
-        elixir: ["1.12", "1.13", "1.14"]
+        elixir: ["1.13", "1.14", "1.15"]
         otp: ["23", "24"]
-        exclude:
-          - elixir: "1.12"
-            otp: "24"
     continue-on-error: false
 
     steps:
