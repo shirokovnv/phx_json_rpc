@@ -5,6 +5,21 @@ All notable changes to `PhxJsonRpc` will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.7.0] - 2024-10-15
+
+### Added
+
+- [Jason](https://hex.pm/packages/jason) as a dependency
+
+### Changed
+
+- BREAKING CHANGE: Bump required elixir version to 1.13
+- Bump dialyxir to 1.4.4
+- Bump ex_json_schema to 0.10.2
+- Bump ex_coveralls to 0.18.3
+- Bump credo to 1.7.8
+- Bump ex_doc to 0.34.2
+
 ## [0.6.0] - 2023-08-30
 
 ### Changed
