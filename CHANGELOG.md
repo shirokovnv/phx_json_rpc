@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- BREAKING CHANGE: Bump required elixir version to 1.13
+- BREAKING CHANGE: Bump required elixir version to 1.13 (minimum OTP version is set to 24)
 - Bump dialyxir to 1.4.4
 - Bump ex_json_schema to 0.10.2
 - Bump ex_coveralls to 0.18.3
