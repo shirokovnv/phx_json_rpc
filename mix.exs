@@ -141,7 +141,7 @@ defmodule PhxJsonRpc.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.30.5", only: :dev, runtime: false},
-      {:ex_json_schema, "~> 0.10.1"},
+      {:ex_json_schema, "~> 0.11.1"},
       {:excoveralls, "~> 0.10", only: :test},
       {:jason, "~> 1.4", optional: true}
     ]
